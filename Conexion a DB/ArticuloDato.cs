@@ -70,6 +70,66 @@ namespace Conexion_a_DB
             }
         }
 
+        public List<Articulo> listarConSP()
+        {
+            List<Articulo> ListaOrdenada = new List<Articulo>();
+
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+
+            try
+            {
+                //string consulta = "Select A.Id as 'Id P', A.Codigo, A.Nombre, A.Descripcion, M.id as 'Id Marca', M.Descripcion as 'Marca', C.id as 'Id Categoria', C.Descripcion as 'Categoria', A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M where M.Id = A.IdMarca and C.Id = A.IdCategoria ";
+
+
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
+                //comando.CommandType = System.Data.CommandType.Text;
+                //comando.CommandText = consulta;
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.CommandText = "storedListar";
+
+
+                comando.Connection = conexion;
+
+                conexion.Open();
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Articulo Aux = new Articulo();
+                    Aux.IdArtículo = (int)lector["Id P"];
+                    Aux.NombreArticulo = (string)lector["Nombre"];
+                    Aux.Codigo = (string)lector["Codigo"];
+                    Aux.Descripcion = (string)lector["Descripcion"];
+                    Aux.Marca = new Marca();
+                    Aux.Marca.IdMarca = (int)lector["Id Marca"];
+                    Aux.Marca.NombreMarca = (string)lector["Marca"];
+                    Aux.Categoria = new Categoria();
+                    Aux.Categoria.IdCategoria = (int)lector["Id Categoria"];
+                    Aux.Categoria.NombreCategoria = (string)lector["Categoria"];
+                    if (!(lector["ImagenURL"] is DBNull))
+                    {
+                        Aux.Imagen = (string)lector["ImagenURL"];
+                    }
+                    Aux.Precio = (decimal)lector["Precio"];
+
+                    ListaOrdenada.Add(Aux);
+                }
+
+                return ListaOrdenada;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
         public void Eliminar(Articulo articulo)
         {
             SqlConnection conexion = new SqlConnection();
@@ -247,7 +307,13 @@ namespace Conexion_a_DB
                 conexion.Close();
             }
         }
-
+        /*
+        public void setearProcedimiento (string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
+        */
        
     }
 }
