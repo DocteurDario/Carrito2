@@ -15,7 +15,6 @@ namespace CarritoDeCompras2
             ArticuloDato articulo=new ArticuloDato();
             dgvArticulos.DataSource = articulo.listarConSP(); 
             dgvArticulos.DataBind();
-
         }
     }
 }
