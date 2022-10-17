@@ -16,6 +16,17 @@ namespace CarritoDeCompras2
         {
             ArticuloDato articulo = new ArticuloDato();
             ListaArticulo = articulo.listarConSP();
+
+            if (!IsPostBack)
+            {
+                repRepetidor.DataSource = ListaArticulo;
+                repRepetidor.DataBind();
+            }
+        }
+
+        protected void btnEjemplo_Click(object sender, EventArgs e)
+        {
+            string valor = ((Button)sender).CommandArgument;
         }
     }
 }
