@@ -35,7 +35,7 @@
                            <p class="card-text"><%#Eval("Descripcion") %></p>
                             <p2 class="card_text"> $  <%#Eval("Precio") %>  </p2>
                             <a href="MostrarDetalle.aspx?idArticulo=<%#Eval("IdArtículo")%>">Ver Detalle</a>
-                            <asp:button Text="Comprar" cssClass="btn btn-outline-info" runat="server" Id="btnEjemplo" CommandArgument='<%#Eval("IdArtículo") %>' CommandName="IdArticulo" OnClick="btnEjemplo_Click" />
+                            <asp:button Text="Comprar" cssClass="btn btn-outline-info" runat="server" Id="btnEjemplo" CommandArgument='<%#Eval("IdArtículo") %>' CommandName="IdArticulo"  OnClick="btnEjemplo_Click" />
                         </div>
                     </div>
                 </div>

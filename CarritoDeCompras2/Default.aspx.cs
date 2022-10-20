@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Clases;
+using System.Diagnostics.PerformanceData;
 
 namespace CarritoDeCompras2
 {
@@ -22,11 +23,36 @@ namespace CarritoDeCompras2
                 repRepetidor.DataSource = ListaArticulo;
                 repRepetidor.DataBind();
             }
+
+
         }
 
         protected void btnEjemplo_Click(object sender, EventArgs e)
         {
             string valor = ((Button)sender).CommandArgument;
+            Carrito carrito = new Carrito();
+            Articulo ArticuloCarro;
+            ArticuloCarro = ListaArticulo.Find(x => x.IdArtículo == int.Parse(valor));
+                       
+
+            try
+            {
+                if (ArticuloCarro.IdArtículo == int.Parse(valor))
+                {
+                    carrito.IdArticulo = int.Parse(valor);
+                    carrito.Cantidad = 1;
+                    carrito.PrecioUnitario = ArticuloCarro.Precio;
+
+                    CarritoDato carritoDato = new CarritoDato();
+                    carritoDato.Agregar(carrito);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

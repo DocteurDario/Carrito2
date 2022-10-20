@@ -5,13 +5,15 @@
     <h3> Carrito de Compras</h3>
     <p>Productos Disponibles</p>
     <asp:GridView ID="dgvArticulos" runat="server" CssClass="Table" AutoGenerateColumns="false">
-        <Columns>
-            <asp:BoundField HeaderText="Codigo" DataField="IdArtículo" />
-            <asp:BoundField HeaderText="Nombre" DataField="Codigo" />
-            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-            <asp:BoundField HeaderText="Marca" DataField="Marca.NombreMarca" />
-            <asp:BoundField HeaderText="Categoria" DataField="Categoria.NombreCategoria" />
-            <asp:BoundField HeaderText="Precio" DataField="Precio" />
+        <Columns>           
+            
+            <asp:BoundField HeaderText="Codigo" DataField="IdCarrito" />
+            <asp:BoundField HeaderText="Nombre" DataField="IdArticulo" />
+            <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+            <asp:BoundField HeaderText="Precio" DataField="PrecioUnitario" />
+
+            
+           
         </Columns>
     </asp:GridView>
 

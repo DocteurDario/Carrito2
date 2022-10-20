@@ -12,8 +12,8 @@ namespace CarritoDeCompras2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloDato articulo=new ArticuloDato();
-            dgvArticulos.DataSource = articulo.listarConSP(); 
+            CarritoDato Carrito=new CarritoDato();
+            dgvArticulos.DataSource = Carrito.listarCarritoConSP(); 
             dgvArticulos.DataBind();
         }
     }

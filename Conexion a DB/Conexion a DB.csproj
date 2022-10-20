@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticuloDato.cs" />
+    <Compile Include="CarritoDato.cs" />
     <Compile Include="CategoriaDato.cs" />
+    <Compile Include="InfoCompraDato.cs" />
     <Compile Include="MarcaDato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
