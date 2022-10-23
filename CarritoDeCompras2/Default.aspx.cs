@@ -13,10 +13,14 @@ namespace CarritoDeCompras2
     public partial class _Default : Page
     {
         public List<Articulo> ListaArticulo { get; set; }
+        public List<Carrito> ListaCarrito { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloDato articulo = new ArticuloDato();
+            CarritoDato carrito = new CarritoDato();
             ListaArticulo = articulo.listarConSP();
+            ListaCarrito = carrito.listarCarrito();
 
             if (!IsPostBack)
             {
@@ -32,20 +36,32 @@ namespace CarritoDeCompras2
             string valor = ((Button)sender).CommandArgument;
             Carrito carrito = new Carrito();
             Articulo ArticuloCarro;
+                
             ArticuloCarro = ListaArticulo.Find(x => x.IdArtículo == int.Parse(valor));
-                       
-
+            //bool existe= ListaCarrito.Exists(x => x.IdArticulo == int.Parse(valor));
             try
             {
-                if (ArticuloCarro.IdArtículo == int.Parse(valor))
+                if(ListaCarrito.Exists(x => x.IdArticulo == int.Parse(valor) == true))
                 {
-                    carrito.IdArticulo = int.Parse(valor);
-                    carrito.Cantidad = 1;
-                    carrito.PrecioUnitario = ArticuloCarro.Precio;
-
+                    carrito = ListaCarrito.Find(x => x.IdArticulo == int.Parse(valor));
+                    carrito.Cantidad = carrito.Cantidad+1;
+                    
                     CarritoDato carritoDato = new CarritoDato();
-                    carritoDato.Agregar(carrito);
+                    carritoDato.Modificar(carrito);
                 }
+                else
+                {                               
+                    if (ArticuloCarro.IdArtículo == int.Parse(valor))
+                    {
+                        carrito.IdArticulo = ArticuloCarro.IdArtículo;
+                        carrito.Cantidad = 1;
+                        carrito.PrecioUnitario = ArticuloCarro.Precio;
+                        
+                        CarritoDato carritoDato = new CarritoDato();
+                        carritoDato.Agregar(carrito);
+                    }
+                }
+
             }
             catch (Exception)
             {

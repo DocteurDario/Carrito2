@@ -67,6 +67,7 @@ namespace Conexion_a_DB
                 
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
+                //comando.CommandText = "StoredCarritoListarEjemplo2";
                 comando.CommandText = "StoredCarritoListar";
                 comando.Connection = conexion;
 
@@ -81,6 +82,7 @@ namespace Conexion_a_DB
                     Aux.IdArticulo = (int)lector["IdArticulo"];
                     Aux.Cantidad = (int)lector["Cantidad"];
                     Aux.PrecioUnitario = (decimal)lector["PrecioUnitario"];
+
 
 
                     ListaOrdenada.Add(Aux);
@@ -157,30 +159,22 @@ namespace Conexion_a_DB
             }
 
         }
-        /*
+        
         public void Modificar(Carrito carrito)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
-
             try
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS;database=CATALOGO_DB;integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                
-                comando.CommandText = "update ARTICULOS set Codigo = @Codigo, Nombre = @Nombre, Descripcion = @DD, IdMarca = @IDM, IdCategoria = @IDC, ImagenUrl = @URL, Precio = @Price where Id = @ID";
-                comando.Parameters.AddWithValue("@Codigo", articulo.Codigo);
-                comando.Parameters.AddWithValue("@Nombre", articulo.NombreArticulo);
-                comando.Parameters.AddWithValue("@DD", articulo.Descripcion);
-                comando.Parameters.AddWithValue("@IDM", articulo.Marca.IdMarca);
-                comando.Parameters.AddWithValue("@IDC", articulo.Categoria.IdCategoria);
-                comando.Parameters.AddWithValue("@URL", articulo.Imagen);
-                comando.Parameters.AddWithValue("@Price", articulo.Precio);
-                comando.Parameters.AddWithValue("@ID", articulo.IdArtículo);
-                
+                comando.CommandText = "update CARRITO set  Cantidad = @Cantidad where IdCarrito = @IdCarrito";
+                comando.Parameters.AddWithValue("@IdCarrito",carrito.IdCarrito);
+                //comando.Parameters.AddWithValue("@Nombre", carrito.IdArticulo);
+                comando.Parameters.AddWithValue("@Cantidad", carrito.Cantidad);
+                //comando.Parameters.AddWithValue("@PrecioUnitario", carrito.PrecioUnitario);
 
                 comando.Connection = conexion;
-
                 conexion.Open();
                 comando.ExecuteNonQuery();
 
@@ -196,7 +190,7 @@ namespace Conexion_a_DB
             }
         
         }
-     */
+  
     }
 }
     
