@@ -67,8 +67,9 @@ namespace Conexion_a_DB
                 
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
-                //comando.CommandText = "StoredCarritoListarEjemplo2";
+                //comando.CommandText = "Select IdCarrito,IdArticulo,Cantidad,PrecioUnitario,(precioUnitario*Cantidad) As Total from CARRITO CR,ARTICULOS A,CATEGORIAS C, MARCAS M Where CR.IdArticulo = A.Id and M.Id = A.IdMarca and C.Id = A.IdCategoria order by a.id asc";
                 comando.CommandText = "StoredCarritoListar";
+
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -82,8 +83,6 @@ namespace Conexion_a_DB
                     Aux.IdArticulo = (int)lector["IdArticulo"];
                     Aux.Cantidad = (int)lector["Cantidad"];
                     Aux.PrecioUnitario = (decimal)lector["PrecioUnitario"];
-
-
 
                     ListaOrdenada.Add(Aux);
                 }

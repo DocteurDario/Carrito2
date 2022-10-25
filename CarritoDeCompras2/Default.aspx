@@ -1,11 +1,20 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CarritoDeCompras2._Default" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotrom alert-dark">
         <h1>EL DOC CARRITO DE COMPRAS👨🏽‍💻</h1>
         <p class="lead">Compra en la mejor pagina que hice hasta el momento, esperemos que mas adelante realice mejores.</p>
         <p><a href="About.aspx" class="btn btn-outline-info">Ir a Carrito &raquo</a></p>
     </div>
+      
+    <button type="button" class="btn btn-primary position-relative">
+  Inbox
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    99+
+    <span class="visually-hidden">unread messages</span>
+  </span>
+</button>
+
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <%--

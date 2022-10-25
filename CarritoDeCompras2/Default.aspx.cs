@@ -22,6 +22,7 @@ namespace CarritoDeCompras2
             ListaArticulo = articulo.listarConSP();
             ListaCarrito = carrito.listarCarrito();
 
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = ListaArticulo;
